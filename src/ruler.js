@@ -96,6 +96,8 @@ export default class Ruler {
                     line.destroy();
                     guides.splice(guideIndex, 1);
                 }
+
+                options.container.dispatchEvent(new CustomEvent('guide-line:moved', { detail: { line, x, y } }));
             };
 
             let guide = document.createElement('div'),
