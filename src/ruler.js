@@ -515,6 +515,7 @@ export default class Ruler {
                     moveCB(self, xpos, ypos);
                 },
                 startMoving: (evt) => {
+                    this.canvasPointerEvents = draggable.cv().style.pointerEvents;
                     draggable.cv().style.pointerEvents = 'none';
                     this.utils.addClasss(guideLine, ['rul_line_dragged']);
                     evt = evt || window.event;
@@ -558,7 +559,7 @@ export default class Ruler {
                     showToolTip();
                 },
                 stopMoving: () => {
-                    draggable.cv().style.pointerEvents = 'all';
+                    draggable.cv().style.pointerEvents = this.canvasPointerEvents;
                     options.container.style.cursor = null;
                     guideLine.style.cursor = null;
                     document.onmousemove = function () { };
